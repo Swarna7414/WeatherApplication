@@ -1,30 +1,40 @@
 package Weather.application.Service.Impl;
 
+import Weather.application.Model.Current;
+import Weather.application.Model.Forecast;
 import Weather.application.Model.FullResponse;
+import Weather.application.Model.Location;
 import Weather.application.Service.ServiceInterface;
+import Weather.application.UseFullclass.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Service
 public class ServiceImpl implements ServiceInterface {
 
     @Autowired
-    private WebClient.Builder webclient;
+    private Response response;
 
     @Override
-    public FullResponse getfullRespone(String key,String location,Integer days) {
-        Mono<FullResponse> fullResponseMono = webclient.build().get()
-                .uri(uriBuilder -> uriBuilder.scheme("https")
-                        .host("api.weatherapi.com")
-                        .path("/v1/forecast.json")
-                        .queryParam("key",key)
-                        .queryParam("q",location)
-                        .queryParam("days",days)
-                        .build()).header("Accept","MediaType.APPLICATION_JSON_VALUE")
-                .retrieve().bodyToMono(FullResponse.class);
+    public FullResponse getfullRespone(String key, String q, Integer days) {
+        return response.getfullRespone(key,q,days);
+    }
 
-        return fullResponseMono.block();
+    @Override
+    public Location getLocation(String key, String location, Integer days) {
+        FullResponse fullResponse=response.getfullRespone(key, location, days);
+        return fullResponse.getLocation();
+    }
+
+    @Override
+    public Current getCurrentWeatherDeatios(String key, String location, Integer days) {
+        FullResponse fullResponse=response.getfullRespone(key, location, days);
+        return fullResponse.getCurrent();
+    }
+
+    @Override
+    public Forecast getForcastedetails(String key, String location, Integer days) {
+        FullResponse fullResponse=response.getfullRespone(key, location, days);
+        return fullResponse.getForecast();
     }
 }

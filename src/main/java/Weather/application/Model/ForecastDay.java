@@ -1,16 +1,19 @@
 package Weather.application.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ForecastDay {
     private String date;
-    private long date_epoch;
+    @JsonProperty("dateepoch")
+    private long dateepoch;
     private Day day;
 
     public ForecastDay() {
     }
 
-    public ForecastDay(String date, long date_epoch, Day day) {
+    public ForecastDay(String date, long dateepoch, Day day) {
         this.date = date;
-        this.date_epoch = date_epoch;
+        this.dateepoch = dateepoch;
         this.day = day;
     }
 
@@ -22,12 +25,12 @@ public class ForecastDay {
         this.date = date;
     }
 
-    public long getDate_epoch() {
-        return date_epoch;
+    public long getdateepoch() {
+        return dateepoch;
     }
 
-    public void setDate_epoch(long date_epoch) {
-        this.date_epoch = date_epoch;
+    public void setdateepoch(long dateepoch) {
+        this.dateepoch = dateepoch;
     }
 
     public Day getDay() {

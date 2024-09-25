@@ -1,26 +1,30 @@
 package Weather.application.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Location {
     private String name;
     private String region;
     private String country;
     private double lat;
     private double lon;
-    private String tz_id;
-    private long localtime_epoch;
+    @JsonProperty("tzid")
+    private String tzid;
+    @JsonProperty("localtimeepoch")
+    private long localtimeepoch;
     private String localtime;
 
     public Location() {
     }
 
-    public Location(String name, String region, String country, double lat, double lon, String tz_id, long localtime_epoch, String localtime) {
+    public Location(String name, String region, String country, double lat, double lon, String tzid, long localtimeepoch, String localtime) {
         this.name = name;
         this.region = region;
         this.country = country;
         this.lat = lat;
         this.lon = lon;
-        this.tz_id = tz_id;
-        this.localtime_epoch = localtime_epoch;
+        this.tzid = tzid;
+        this.localtimeepoch = localtimeepoch;
         this.localtime = localtime;
     }
 
@@ -65,20 +69,20 @@ public class Location {
         this.lon = lon;
     }
 
-    public String getTz_id() {
-        return tz_id;
+    public String gettzid() {
+        return tzid;
     }
 
-    public void setTz_id(String tz_id) {
-        this.tz_id = tz_id;
+    public void settzid(String tzid) {
+        this.tzid = tzid;
     }
 
-    public long getLocaltime_epoch() {
-        return localtime_epoch;
+    public long getlocaltimeepoch() {
+        return localtimeepoch;
     }
 
-    public void setLocaltime_epoch(long localtime_epoch) {
-        this.localtime_epoch = localtime_epoch;
+    public void setlocaltimeepoch(long localtimeepoch) {
+        this.localtimeepoch = localtimeepoch;
     }
 
     public String getLocaltime() {
