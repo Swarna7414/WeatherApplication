@@ -3,18 +3,18 @@ package Weather.application.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Current {
-    @JsonProperty("tempc")
+    @JsonProperty("temp_c")
     private double tempc;
-    @JsonProperty("isday")
+    @JsonProperty("is_day")
     private int isday;
     private Condition condition;
     private int humidity;
     private int cloud;
-    @JsonProperty("heatindexc")
+    @JsonProperty("heatindex_c")
     private double heatindexc;
-    @JsonProperty("dewpointc")
+    @JsonProperty("dewpoint_c")
     private double dewpointc;
-    @JsonProperty("gustkph")
+    @JsonProperty("gust_kph")
     private double gust_kph;
 
     public Current() {

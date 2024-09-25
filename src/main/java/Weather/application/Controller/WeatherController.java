@@ -1,9 +1,6 @@
 package Weather.application.Controller;
 
-import Weather.application.Model.Current;
-import Weather.application.Model.Forecast;
-import Weather.application.Model.FullResponse;
-import Weather.application.Model.Location;
+import Weather.application.Model.*;
 import Weather.application.Service.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -37,6 +34,11 @@ public class WeatherController {
     @GetMapping(value = "/forecast", produces = "application/json")
     private Forecast getForecasteddata(@RequestParam String key, @RequestParam String location, @RequestParam Integer days){
         return service.getForcastedetails(key, location, days);
+    }
+
+    @GetMapping("/required")
+    public ExtractedData getExtratedData(@RequestParam String key, @RequestParam String location, @RequestParam Integer days){
+        return service.getextracteddata(key,location,days);
     }
 
 

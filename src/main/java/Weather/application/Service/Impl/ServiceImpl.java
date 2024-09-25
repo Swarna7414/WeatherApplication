@@ -1,9 +1,6 @@
 package Weather.application.Service.Impl;
 
-import Weather.application.Model.Current;
-import Weather.application.Model.Forecast;
-import Weather.application.Model.FullResponse;
-import Weather.application.Model.Location;
+import Weather.application.Model.*;
 import Weather.application.Service.ServiceInterface;
 import Weather.application.UseFullclass.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +33,26 @@ public class ServiceImpl implements ServiceInterface {
     public Forecast getForcastedetails(String key, String location, Integer days) {
         FullResponse fullResponse=response.getfullRespone(key, location, days);
         return fullResponse.getForecast();
+    }
+
+    @Override
+    public ExtractedData getextracteddata(String key, String location, Integer days) {
+        FullResponse fullResponse= response.getfullRespone(key,location,days);
+        Location details=fullResponse.getLocation();
+        Current current=fullResponse.getCurrent();
+
+        ExtractedData extractedData = new ExtractedData();
+
+        extractedData.setName(details.getName());
+        extractedData.setCountry(details.getCountry());
+        extractedData.setLocaltime(details.getLocaltime());
+        extractedData.setWeather(current.getCondition().getText());
+        extractedData.setTempc(current.gettempc());
+        extractedData.setHumidity(current.getHumidity());
+        extractedData.setHeatindexc(current.getheatindexc());
+        extractedData.setDewpointc(current.getdewpointc());
+        extractedData.setGust_kph(current.getGust_kph());
+
+        return extractedData;
     }
 }
