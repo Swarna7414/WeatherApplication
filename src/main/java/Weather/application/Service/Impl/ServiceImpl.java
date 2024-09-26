@@ -16,12 +16,12 @@ public class ServiceImpl implements ServiceInterface {
     private Response response;
 
 
+
+
     @Override
     public FullResponse getfullRespone(String key, String q, Integer days) {
         return response.getfullRespone(key,q,days);
-    }
-
-    @Override
+    }    @Override
     public Location getLocation(String key, String location, Integer days) {
         FullResponse fullResponse=response.getfullRespone(key, location, days);
         return fullResponse.getLocation();

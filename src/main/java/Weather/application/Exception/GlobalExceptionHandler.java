@@ -19,13 +19,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = MinimumDaysException.class)
     public ResponseEntity<Object> handlelessdaysexcepion(MinimumDaysException minimumDaysException){
-        ErrorResponse errorResponse = new ErrorResponse(minimumDaysException.getMessage(),HttpStatus.NOT_FOUND);
+        ErrorResponse errorResponse = new ErrorResponse(minimumDaysException.getMessage(),HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = EmptyException.class)
-    public ResponseEntity<Object> handlesEmptyExxception(EmptyException emptyException){
-        ErrorResponse errorResponse= new ErrorResponse(emptyException.getMessage(),HttpStatus.NOT_FOUND);
+    @ExceptionHandler(value = WeatherApiException.class)
+    public ResponseEntity<Object> handlescitynotfondexception(WeatherApiException weatherApiException){
+        ErrorResponse errorResponse=new ErrorResponse(weatherApiException.getMessage(),HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
 }

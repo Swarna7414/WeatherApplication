@@ -3,9 +3,12 @@ package Weather.application.UseFullclass;
 import Weather.application.Exception.EmptyException;
 import Weather.application.Exception.MinimumDaysException;
 import Weather.application.Exception.MoreDaysException;
+import Weather.application.Exception.WeatherApiException;
 import Weather.application.Model.FullResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -46,8 +49,19 @@ public class Response {
                         .queryParam("key",key)
                         .queryParam("q",location)
                         .queryParam("days",days)
-                        .build()).header("Accept","MediaType.APPLICATION_JSON_VALUE")
-                .retrieve().bodyToMono(FullResponse.class);
+                        .build()).header("Accept", MediaType.APPLICATION_JSON_VALUE)
+                .retrieve()
+                .onStatus(status->status.is4xxClientError(),clientResponse -> {
+                    return clientResponse.bodyToMono(String.class).flatMap(errorresponse->{
+                        throw new WeatherApiException("City Not Found",HttpStatus.NOT_FOUND);
+                    });
+                })
+                .onStatus(status-> status.is5xxServerError(),clientResponse -> {
+                    return clientResponse.bodyToMono(String.class).flatMap(errorresponse->{
+                        throw new WeatherApiException("Internal Server Error. Please try again later.",HttpStatus.INTERNAL_SERVER_ERROR);
+                    });
+                })
+                .bodyToMono(FullResponse.class);
 
         return fullResponseMono.block();
     }
