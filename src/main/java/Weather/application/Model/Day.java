@@ -3,11 +3,11 @@ package Weather.application.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Day {
-    @JsonProperty("maxtempc")
+    @JsonProperty("maxtemp_c")
     private double maxtempc;
-    @JsonProperty("mintempc")
+    @JsonProperty("mintemp_c")
     private double mintempc;
-    @JsonProperty("avgtempc")
+    @JsonProperty("avgtemp_c")
     private double avgtempc;
     private int avghumidity;
 

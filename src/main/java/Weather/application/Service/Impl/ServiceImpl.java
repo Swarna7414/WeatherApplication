@@ -1,9 +1,12 @@
 package Weather.application.Service.Impl;
 
+import Weather.application.Exception.MinimumDaysException;
+import Weather.application.Exception.MoreDaysException;
 import Weather.application.Model.*;
 import Weather.application.Service.ServiceInterface;
 import Weather.application.UseFullclass.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +14,7 @@ public class ServiceImpl implements ServiceInterface {
 
     @Autowired
     private Response response;
+
 
     @Override
     public FullResponse getfullRespone(String key, String q, Integer days) {
@@ -45,7 +49,8 @@ public class ServiceImpl implements ServiceInterface {
 
         extractedData.setName(details.getName());
         extractedData.setCountry(details.getCountry());
-        extractedData.setLocaltime(details.getLocaltime());
+        extractedData.setLocaldate(Response.setLocalDate(details.getLocaltime()));
+        extractedData.setLocaltime(Response.setLocalTime(details.getLocaltime()));
         extractedData.setWeather(current.getCondition().getText());
         extractedData.setTempc(current.gettempc());
         extractedData.setHumidity(current.getHumidity());

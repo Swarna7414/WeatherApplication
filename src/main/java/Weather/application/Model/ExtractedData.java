@@ -3,6 +3,7 @@ package Weather.application.Model;
 public class ExtractedData {
     private String name;
     private String country;
+    private String localdate;
     private String localtime;
     private String weather;
     private int humidity;
@@ -14,9 +15,10 @@ public class ExtractedData {
     public ExtractedData() {
     }
 
-    public ExtractedData(String name, String country, String localtime, String weather,Double tempc, int humidity, double heatindexc, double dewpointc, double gust_kph) {
+    public ExtractedData(String name, String country, String localdate, String localtime, String weather,Double tempc, int humidity, double heatindexc, double dewpointc, double gust_kph) {
         this.name = name;
         this.country = country;
+        this.localdate=localdate;
         this.localtime = localtime;
         this.weather = weather;
         this.tempc=tempc;
@@ -40,6 +42,14 @@ public class ExtractedData {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getLocaldate() {
+        return localdate;
+    }
+
+    public void setLocaldate(String localdate) {
+        this.localdate = localdate;
     }
 
     public String getLocaltime() {

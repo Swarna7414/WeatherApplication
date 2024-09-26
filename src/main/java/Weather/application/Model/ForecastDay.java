@@ -4,16 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ForecastDay {
     private String date;
-    @JsonProperty("dateepoch")
-    private long dateepoch;
     private Day day;
 
     public ForecastDay() {
     }
 
-    public ForecastDay(String date, long dateepoch, Day day) {
+    public ForecastDay(String date,Day day) {
         this.date = date;
-        this.dateepoch = dateepoch;
         this.day = day;
     }
 
@@ -23,14 +20,6 @@ public class ForecastDay {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public long getdateepoch() {
-        return dateepoch;
-    }
-
-    public void setdateepoch(long dateepoch) {
-        this.dateepoch = dateepoch;
     }
 
     public Day getDay() {
