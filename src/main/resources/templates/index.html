@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #008cba;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .weather-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .weather-info p {
+            margin: 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+        .value {
+            color: #666;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="'Weather Details of ' + ${name}">Weather Details of City Name</h1>
+
+<div class="container">
+    <h2>Location Information</h2>
+    <div class="weather-info">
+        <p><span class="label">Location Name:</span> <span class="value" th:text="${name}">City Name</span></p>
+        <p><span class="label">Country:</span> <span class="value" th:text="${country}">Country Name</span></p>
+    </div>
+
+    <h2>Weather Information</h2>
+    <div class="weather-info">
+        <p><span class="label">Date:</span> <span class="value" th:text="${localdate}">2024-10-19</span></p>
+        <p><span class="label">Time:</span> <span class="value" th:text="${localtime}">14:30</span></p>
+    </div>
+    <div class="weather-info">
+        <p><span class="label">Weather:</span> <span class="value" th:text="${weather}">Sunny</span></p>
+        <p><span class="label">Temperature (°C):</span> <span class="value" th:text="${tempc}">25°C</span></p>
+    </div>
+    <div class="weather-info">
+        <p><span class="label">Humidity (%):</span> <span class="value" th:text="${humidity}">50%</span></p>
+        <p><span class="label">Heat Index (°C):</span> <span class="value" th:text="${heatindexc}">28°C</span></p>
+    </div>
+    <div class="weather-info">
+        <p><span class="label">Dew Point (°C):</span> <span class="value" th:text="${dewpointc}">16°C</span></p>
+        <p><span class="label">Wind Gusts (kph):</span> <span class="value" th:text="${gust_kph}">20 kph</span></p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Powered by MR. SWARNA &copy; 2024</p>
+</div>
+
+</body>
+</html>
