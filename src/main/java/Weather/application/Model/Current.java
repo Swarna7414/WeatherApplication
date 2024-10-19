@@ -1,43 +1,50 @@
 package Weather.application.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Current {
-    private double temp_c;
-    private int is_day;
+    @JsonProperty("temp_c")
+    private double tempc;
+    @JsonProperty("is_day")
+    private int isday;
     private Condition condition;
     private int humidity;
     private int cloud;
-    private double heatindex_c;
-    private double dewpoint_c;
+    @JsonProperty("heatindex_c")
+    private double heatindexc;
+    @JsonProperty("dewpoint_c")
+    private double dewpointc;
+    @JsonProperty("gust_kph")
     private double gust_kph;
 
     public Current() {
     }
 
-    public Current(double temp_c, int is_day, Condition condition, int humidity, int cloud, double heatindex_c, double dewpoint_c, double gust_kph) {
-        this.temp_c = temp_c;
-        this.is_day = is_day;
+    public Current(double tempc, int isday, Condition condition, int humidity, int cloud, double heatindexc, double dewpointc, double gust_kph) {
+        this.tempc = tempc;
+        this.isday = isday;
         this.condition = condition;
         this.humidity = humidity;
         this.cloud = cloud;
-        this.heatindex_c = heatindex_c;
-        this.dewpoint_c = dewpoint_c;
+        this.heatindexc = heatindexc;
+        this.dewpointc = dewpointc;
         this.gust_kph = gust_kph;
     }
 
-    public double getTemp_c() {
-        return temp_c;
+    public double gettempc() {
+        return tempc;
     }
 
-    public void setTemp_c(double temp_c) {
-        this.temp_c = temp_c;
+    public void settempc(double tempc) {
+        this.tempc = tempc;
     }
 
-    public int getIs_day() {
-        return is_day;
+    public int getisday() {
+        return isday;
     }
 
-    public void setIs_day(int is_day) {
-        this.is_day = is_day;
+    public void setisday(int isday) {
+        this.isday = isday;
     }
 
     public Condition getCondition() {
@@ -64,20 +71,20 @@ public class Current {
         this.cloud = cloud;
     }
 
-    public double getHeatindex_c() {
-        return heatindex_c;
+    public double getheatindexc() {
+        return heatindexc;
     }
 
-    public void setHeatindex_c(double heatindex_c) {
-        this.heatindex_c = heatindex_c;
+    public void setheatindexc(double heatindexc) {
+        this.heatindexc = heatindexc;
     }
 
-    public double getDewpoint_c() {
-        return dewpoint_c;
+    public double getdewpointc() {
+        return dewpointc;
     }
 
-    public void setDewpoint_c(double dewpoint_c) {
-        this.dewpoint_c = dewpoint_c;
+    public void setdewpointc(double dewpointc) {
+        this.dewpointc = dewpointc;
     }
 
     public double getGust_kph() {
