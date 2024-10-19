@@ -52,7 +52,10 @@ public class WeatherController {
     }
 
     @GetMapping("/required")
-    public String getExtratedData(@RequestParam String location, @RequestParam Integer days, Model model){
+    public String getExtratedData(@RequestParam(required = false) String location, @RequestParam(required = false) Integer days, Model model){
+        if(location==null || days == null){
+            return "index";
+        }
         ExtractedData data=service.getextracteddata(realkey,location,days);
         model.addAttribute("name",data.getName());
         model.addAttribute("country",data.getCountry());
@@ -64,7 +67,7 @@ public class WeatherController {
         model.addAttribute("heatindexc",data.getHeatindexc());
         model.addAttribute("dewpointc",data.getDewpointc());
         model.addAttribute("gust_kph",data.getGust_kph());
-        return "index";
+        return "result";
     }
 
 
